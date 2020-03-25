@@ -1,3 +1,22 @@
+
+
+const express = require('express');
+
+const app = express();
+
+const server = app.listen(8000);
+
+const io = require('socket.io')(server);
+
+let connectedClients = 0;
+
+io.on('connection', socket =>{
+    // console.log(socket);
+
+    socket.emit('welcome', 'thanks for coming');
+
+})
+
 const stacks = [[],[],[]];
 const discards = [[],[],[]];
 const goalsStack = [];
@@ -266,10 +285,4 @@ function setGoals(goals){
 
     }
 }
-    // shuffle(deck);
-    // deal(deck);
-    // next(stacks, discards);
-// setGoals(goals);
-// console.log(goalsStack);    
-
     
