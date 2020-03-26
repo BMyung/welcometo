@@ -13,7 +13,7 @@ let connectedClients = 0;
 io.on('connection', socket =>{
     // console.log(socket);
 
-    socket.emit('welcome', 'thanks for coming');
+    socket.emit('deal', deal(deck));
 
 })
 
@@ -248,6 +248,18 @@ const goals = [[
 ]
 ]
 
+function reshuffle(){
+    const ddeck = [...discards[0], ...discards[1], ...discards[2]];
+    shuffle(ddeck);
+    while(ddeck.length > 0){
+        for (let j = 0; j < stacks.length; j++){
+            let card = ddeck.shift();
+            stacks[j].push(card);
+        }
+
+    }
+}
+
 function shuffle(deck){ 
     var m = deck.length, t, i;
     while (m) {
@@ -261,23 +273,24 @@ function shuffle(deck){
 
 
 function deal(deck){
+    shuffle(deck);
     while(deck.length > 0){
         for (let j = 0; j < stacks.length; j++){
             let card = deck.shift();
             stacks[j].unshift(card);
         }
     }
-        
+        return stacks;
     }
 
-    function next(stacks, discards){
+    function next(){
         for (let i =0; i < 3; i++){
             let card = stacks[i].shift();
             discards[i].unshift(card);
         }
     }
 
-function setGoals(goals){
+function setGoals(){
     for (let i = 0; i < goals.length; i++){
         shuffle(goals[i]);
         let card = goals[i].pop();
@@ -285,4 +298,3 @@ function setGoals(goals){
 
     }
 }
-    
