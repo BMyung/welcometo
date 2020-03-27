@@ -9,9 +9,19 @@ import {Goal} from './components/section/goals'
 
 function App() {
   const [socket] = useState(()=> io(':8000'));
-
+  const [stacks, setStacks] = useState([['null'],['null'],['null']]);
+  const [discards, setDiscards] = useState([['null'],['null'],['null']]);
+  const cardInfo1 = {stacks: stacks[0],discards: discards[0]}
+  const cardInfo2 = {stacks: stacks[1], discards: discards[1]}
+  const cardInfo3 = {stacks: stacks[2], discards: discards[2]}
   useEffect(()=>{
-    socket.on('deal', console.log)
+    socket.on('decks', data =>{
+      setStacks(data.stacks);
+      setDiscards(data.discards);
+    });
+
+
+    return () => socket.disconnect();
   }, [socket])
   return (
     <div className="App">
@@ -23,9 +33,9 @@ function App() {
       <Goal />
     </div>
     <div className='cardArea'>
-      <Combo />
-      <Combo />
-      <Combo />
+      <Combo deck={cardInfo1}/>
+      <Combo deck={cardInfo2}/>
+      <Combo deck={cardInfo3}/>
     </div>
     <div className = 'menuWrapper'>
       <Menu />

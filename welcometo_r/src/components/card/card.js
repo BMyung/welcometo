@@ -5,9 +5,9 @@ export class Card extends React.Component{
         return (
         <div className='cardFront'>
             <div className = 'preview'>
-            biz
+            {this.props.card.ability}
             </div>
-            <h1 className='number'>1</h1>
+            <h1 className='number'>{this.props.card.number}</h1>
         </div>
 
     )

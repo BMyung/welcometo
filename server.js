@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 
 const app = express();
@@ -8,13 +6,17 @@ const server = app.listen(8000);
 
 const io = require('socket.io')(server);
 
-let connectedClients = 0;
+// let connectedClients = 0;
 
 io.on('connection', socket =>{
-    // console.log(socket);
+    console.log('connected');
+    deal(deck);
+    socket.emit('decks', {stacks,discards,goalsStack})
+})
 
-    socket.emit('deal', deal(deck));
-
+io.on('disconnect', () =>{
+    connectedClients--;
+    console.log('gone' + connectedClients)
 })
 
 const stacks = [[],[],[]];
@@ -280,6 +282,7 @@ function deal(deck){
             stacks[j].unshift(card);
         }
     }
+    next();
         return stacks;
     }
 
