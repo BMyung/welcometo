@@ -4,7 +4,8 @@ export class Menu extends React.Component{
     render(){
         return (
             <div className = 'menu'>
-                <button>Next Card</button>
+                {/* <button>New Game</button> */}
+                {/* <button onClick={nextCard}>Next Card</button> */}
                 <button>Reshuffle</button>
                 <div className='links'>
                 Download apps here:

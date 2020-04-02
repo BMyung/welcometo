@@ -4,12 +4,8 @@ export class Goalpoints extends React.Component{
     render(){
         return (
         <div className='points'>
-        <div className='goalPoint1'>
-            <h2>8</h2>
-        </div>
-        <div className='goalPoint2'>
-            <h2>4</h2>
-        </div>
+            <h2 className='goalPoint1'>First: 8</h2>
+            <h2 className='goalPoint2'>Rest: 4</h2>
         </div>
 
     )

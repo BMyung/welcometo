@@ -9,20 +9,22 @@ import {Goal} from './components/section/goals'
 
 function App() {
   const [socket] = useState(()=> io(':8000'));
-  const [stacks, setStacks] = useState([['null'],['null'],['null']]);
-  const [discards, setDiscards] = useState([['null'],['null'],['null']]);
-  const cardInfo1 = {stacks: stacks[0],discards: discards[0]}
-  const cardInfo2 = {stacks: stacks[1], discards: discards[1]}
-  const cardInfo3 = {stacks: stacks[2], discards: discards[2]}
+  const [stacks, setStacks] = useState([{topStacks:'', discardStacks:''},{topStacks:'', discardStacks:''},{topStacks:'', discardStacks:''}]);
+  const [remaining, setRemaining] = useState(0);
+  
+
   useEffect(()=>{
     socket.on('decks', data =>{
-      setStacks(data.stacks);
-      setDiscards(data.discards);
+      console.log(data.allStacks);
+      setStacks(data.allStacks);
+      setRemaining(data.remaining);
     });
-
-
+    
     return () => socket.disconnect();
   }, [socket])
+
+  
+console.log('stacks = '+ stacks[0]['topStacks']['number'])
   return (
     <div className="App">
     <h1>Welcome to Your Perfect Home</h1>
@@ -33,11 +35,13 @@ function App() {
       <Goal />
     </div>
     <div className='cardArea'>
-      <Combo deck={cardInfo1}/>
-      <Combo deck={cardInfo2}/>
-      <Combo deck={cardInfo3}/>
+      {stacks.map((data,i)=>{
+        return (<Combo deck={data} key={i}/>)
+      })}
     </div>
     <div className = 'menuWrapper'>
+      <h2>Cards remaining: {remaining}</h2>
+      <button onClick=>New Game</button>
       <Menu />
     </div>
     </div>

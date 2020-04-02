@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color:palegoldenrod;
+  height: 100vh;
 }
 
 .wrapper{
@@ -11,10 +12,10 @@
   flex-wrap: wrap;
 }
 .cardArea{
-  flex-grow: 1;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  border: 1px solid black;
 
 }
 
@@ -32,6 +33,7 @@
 .App > h1{
   display: inline-block;
   margin-right: 2rem;
+  margin: 0.5rem;
 }
 
 .preview{
@@ -80,11 +82,7 @@
   margin: 1rem auto;
 }
 
-.cardArea{
-  display: flex;
-  flex-direction: row;
-  border: 1px solid black;
-}
+
 .combo{
   background-color: rgb(90, 90, 95);
   width: 220px;
@@ -114,16 +112,21 @@
 }
 
 .points{
-  display: flex;
-  justify-content: space-evenly;
+  /* display: flex;
+  justify-content: space-evenly; */
+  background-color: green;
+
 }
 
 .goalPoint1, .goalPoint2{
-  border: 1px solid black;
-  padding: 0rem 2rem;
+  /* border: 1px solid black; */
+  /* padding: 0rem 1rem; */
 }
 
 .goalCard{
   border-bottom: 1px solid black;
 }
+.goalDetail{
+display: flex;
 
+}

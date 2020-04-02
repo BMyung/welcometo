@@ -10,14 +10,26 @@ const io = require('socket.io')(server);
 
 io.on('connection', socket =>{
     console.log('connected');
-    deal(deck);
-    socket.emit('decks', {stacks,discards,goalsStack})
-})
+    socket.on('new', socket=>{
+        deal(deck);
+        let allStacks = [
+            {topStacks: stacks[0][0],
+                discardStacks: discards[0][0]},
+            {topStacks: stacks[1][0],
+                discardStacks: discards[1][0]},
+            {topStacks: stacks[2][0],
+                discardStacks: discards[2][0]}];
+        let remaining = stacks[0].length;
+        console.log(allStacks);
+        socket.emit('decks', {allStacks,remaining});
+    })
+    socket.on('next',socket=>{
+        next();
+        socket.emit('decks',{allStacks,remaining} )
 
-io.on('disconnect', () =>{
-    connectedClients--;
-    console.log('gone' + connectedClients)
-})
+    })
+});
+
 
 const stacks = [[],[],[]];
 const discards = [[],[],[]];
@@ -190,13 +202,16 @@ const deck = [
 ]
 
 const goals = [[
-    {goal: '6 one',
+    {goal: '[x] [x] [x] [x] [x] [x]',
+    description: 'six 1s',
     first_points: 8,
     second_points: 4},
-    {goal: '4 two',
+    {goal: '[xx] [xx] [xx] [xx]',
+    description: 'four 2s',
     first_points: 8,
     second_points: 4},
-    {goal: '3 three',
+    {goal: '[xxx] [xxx] [xxx]',
+    description: 'three 3s',
     first_points: 8,
     second_points: 4},
     {goal: '4 four',

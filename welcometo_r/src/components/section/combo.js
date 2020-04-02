@@ -5,8 +5,8 @@ import {Cardback} from '../card/cardback'
 
 export class Combo extends React.Component{
     render(){
-        let topCard = this.props.deck.stacks[0];
-        let topDiscard = this.props.deck.discards[0];
+        let topCard = this.props.deck.topStacks;
+        let topDiscard = this.props.deck.discardStacks;
         return (
         <div className='combo'>
         <Card card={topCard}/>
