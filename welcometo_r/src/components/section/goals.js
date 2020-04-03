@@ -5,12 +5,12 @@ export class Goal extends React.Component {
     render() {
         return (
             <div className='goalCard'>
-                <h2> Level 1</h2>
+                <h2> Level {this.props.goalCard.level}</h2>
                     <div className='goalDetail'>
-                        <h2>[x] [x] [x] [x] [x] [x]</h2>
-                        <h3>Six 1s</h3>
-                        <Goalpoints />
+                        <h1>{this.props.goalCard.goal}</h1>
+                        <h3>{this.props.goalCard.description}</h3>
                     </div>
+                        <Goalpoints points = {this.props.goalCard}/>
             </div>
 
         )

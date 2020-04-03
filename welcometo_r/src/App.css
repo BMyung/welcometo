@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: 9;
+}
 .App {
   text-align: center;
   background-color:palegoldenrod;
@@ -16,6 +20,7 @@
   justify-content: center;
   flex-wrap: wrap;
   border: 1px solid black;
+  margin: 0.5rem;
 
 }
 
@@ -31,9 +36,7 @@
 }
 
 .App > h1{
-  display: inline-block;
-  margin-right: 2rem;
-  margin: 0.5rem;
+  padding: 1rem; 
 }
 
 .preview{
@@ -112,9 +115,8 @@
 }
 
 .points{
-  /* display: flex;
-  justify-content: space-evenly; */
-  background-color: green;
+  display: flex;
+  justify-content: space-evenly;
 
 }
 
@@ -124,9 +126,18 @@
 }
 
 .goalCard{
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  margin: 1.25rem .5rem;
+  padding: .5rem;
 }
 .goalDetail{
 display: flex;
-
+flex-direction: column;
 }
+
+.image{
+  max-width: 90%;
+  height: auto;
+  
+}
+
