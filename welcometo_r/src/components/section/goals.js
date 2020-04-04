@@ -10,7 +10,7 @@ export class Goal extends React.Component {
                         <h1>{this.props.goalCard.goal}</h1>
                         <h3>{this.props.goalCard.description}</h3>
                     </div>
-                        <Goalpoints points = {this.props.goalCard}/>
+                        <Goalpoints points = {this.props.goalCard} bg = {this.props.status}/>
             </div>
 
         )

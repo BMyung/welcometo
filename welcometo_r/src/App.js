@@ -9,6 +9,8 @@ import cover from './cover.jpg';
 
 function App() {
   const [socket] = useState(()=> io(':8000'));
+  const [gameStatus, setStatus] = useState(false);
+  // const [bgColor, setBgColor] = useState(true)
   const [stacks, setStacks] = useState([
     {
       topStacks:'', discardStacks:''
@@ -29,27 +31,38 @@ function App() {
   
 
   useEffect(()=>{
-    socket.on('decks', data =>{
+    socket.on('gamestart', data =>{
       setStacks(data.allStacks);
       setRemaining(data.remaining);
       setGoals(data.goalsStack)
+      setStatus(data.gameStatus)
+    });
+    socket.on('decks', data =>{
+      setStacks(data.allStacks);
+      setRemaining(data.remaining);
     });
     
     return () => socket.disconnect();
   }, [socket]);
 
-  
+
 function handleNew(event) {
   event.preventDefault();
     socket.emit('new');
 }
 function handleNext(event) {
   event.preventDefault();
-   remaining > 1 ? socket.emit('next') : socket.emit('reshuffle');
+   remaining > 1 ? socket.emit('next') : handleReshuffle(event);
+  
 }
 function handleReshuffle(event) {
   event.preventDefault();
-   socket.emit('reshuffle');
+   if (gameStatus){
+     socket.emit('reshuffle')
+  }
+  else{
+    alert('Please start a new game');
+  }
 }
 
   return (
@@ -69,10 +82,7 @@ function handleReshuffle(event) {
     <div className = 'menuWrapper'>
     <img className = 'image' src={cover} alt='game cover'></img>
       <h2>Cards remaining: {remaining}</h2>
-      <button onClick={handleNew}>New Game</button>
-      <button onClick={handleNext}>Next Card</button>
-      <button onClick={handleReshuffle}>Reshuffle</button>
-      <Menu />
+      <Menu new={handleNew} shuffle={handleReshuffle} next={handleNext}/>
     </div>
     </div>
 

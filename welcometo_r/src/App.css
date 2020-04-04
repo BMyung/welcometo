@@ -5,7 +5,17 @@
 .App {
   text-align: center;
   background-color:palegoldenrod;
-  height: 100vh;
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  padding: .25rem;
 }
 
 .wrapper{
@@ -27,7 +37,7 @@
 .cardFront {
   background-image: url(./components/card/door.jpg) ;
   width: 190px;
-  height: 285px;
+  height: 275px;
   background-size: cover;
   /* display: inline-block; */
   margin: 1rem auto;
@@ -40,48 +50,54 @@
 }
 
 .preview{
-  padding: 5px;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .biz{
-  background-color: rgba(218, 62, 62, 0.50);
+  background-color: rgba(218, 62, 62, 0.65);
+  color: white;
 }
 .fence{
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
 }
 .temp_agency{
-  background-color: rgba(224, 90, 0, 0.5);
+  background-color: rgba(224, 90, 0, 0.65);
+  color: white;
 }
 .stock_exchange{
-  background-color: rgba(111, 3, 121, 0.5);
+  background-color: rgba(111, 3, 121, 0.65);
+  color: white;
 }
 .park{
-  background-color: rgba(0, 110, 24, 0.5);
+  background-color: rgba(0, 110, 24, 0.65);
+  color: white;
 }
 .pool{
-  background-color: rgba(23, 139, 233, 0.651);
+  background-color: rgba(23, 139, 233, 0.65);
+  color: white;
 }
 
 .number{
   font-size: 4rem;
   background-color: rgba(220, 220, 220, 0.80);
-  display: inline-block;
-  /* padding: 1rem 4rem; */
+  display: flex;
+  justify-content: center;
+  margin: 4rem auto;
   width: 75%;
   border: 1px solid black;
+
 }
 
 .cardBack{
   background-color: white;
   border: 1px solid black;
   width: 190px;
-  height: 285px;
+  height: 275px;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-
   margin: 1rem auto;
 }
 
@@ -96,14 +112,13 @@
 
 .goals{
   flex-grow: 1;
-  /* background-color: greenyellow; */
   width: 15%;
 }
 
 .menuWrapper{
   flex-grow: 1;
-  /* background-color:purple; */
   width: 15%;
+  margin-top: 0.5rem;
 }
 
 .ability{
@@ -111,7 +126,8 @@
   border: 1px solid black;
   margin: auto;
   width: 100%;
-  padding: 1.5rem 0rem;;
+  padding: 4rem 0;
+  height: 100%;
 }
 
 .points{
@@ -122,12 +138,15 @@
 
 .goalPoint1, .goalPoint2{
   /* border: 1px solid black; */
-  /* padding: 0rem 1rem; */
+  padding: .5rem;
+  border-radius: 15px;
 }
+
 
 .goalCard{
   border: 1px solid black;
-  margin: 1.25rem .5rem;
+  margin: .5rem .5rem;
+  margin-bottom: 1rem;
   padding: .5rem;
 }
 .goalDetail{
@@ -136,8 +155,18 @@ flex-direction: column;
 }
 
 .image{
-  max-width: 90%;
+  max-width: 60%;
   height: auto;
   
+}
+
+button {
+  background-color: rgb(80, 180, 180);
+  border: none;
+  color: white;
+  padding: 15px;
+  margin: .25rem;
+  font-size: 1rem;
+  border-radius: 4px;
 }
 

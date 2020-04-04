@@ -22,7 +22,7 @@ io.on('connection', socket =>{
             {topStacks: stacks[2][stacks[0].length-1],
                 discardStacks: discards[2][discards[0].length-1]}];
         let remaining = stacks[0].length;
-        io.emit('decks', {allStacks,remaining, goalsStack});
+        io.emit('gamestart', {allStacks,remaining, goalsStack, gameStatus});
     })
     socket.on('next',socket=>{
         next();
@@ -53,7 +53,7 @@ io.on('connection', socket =>{
 var stacks = [[],[],[]];
 var discards = [[],[],[]];
 var goalsStack = [];
-
+const gameStatus= true;
 var deck = [
     {number: 1,
     ability: 'park'},
@@ -490,7 +490,6 @@ deck = [
 
 
 function reshuffle(){
-    // console.log(discards)
     var ddeck = [];
     for (let i = 0; i < discards.length; i++){
         let temp = discards[i].splice(0,discards[i].length-1);
@@ -500,7 +499,7 @@ function reshuffle(){
     while(ddeck.length > 0){
         for (let j = 0; j < stacks.length; j++){
             let card = ddeck.shift();
-            stacks[j].push(card);
+            stacks[j].unshift(card);
         }
     }
     // next();
